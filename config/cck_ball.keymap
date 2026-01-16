@@ -22,10 +22,9 @@
 // 入力プロセッサ設定 (リスナー)
 // ---------------------------------------------------------
 
-// 1. 通常のマウス移動 (レイヤー3以外で有効)
+// 1. 通常のマウス移動 (全レイヤーで有効、スクロール時はドライバが抑制)
 &mmv_input_listener {
     input-processors = <&zip_xy_scaler 2 1>;
-    layers = <0 1 2 4 5 6>; 
 };
 
 // 2. 通常のスクロール (既存設定)
@@ -38,15 +37,19 @@
     // 追加リスナー設定
     // -----------------------------------------------------
 
-    // 3. レイヤー3専用: トラックボールをスクロールにする
-    scroll_listener {
-        compatible = "zmk,input-listener";
+    // 3. レイヤー3専用スクロールはドライバ側(cck_ball_right.overlay)で制御するため
+    // ここでのリスナー定義は不要となりました。
+
+    // 4. トラックボール作動時にレイヤー1にする (Auto Mouse)
+    automouse_listener {
+        compatible = "zmk,input-behavior-listener";
         device = <&trackball>;
-        layers = <3>;
-        // evt-type, x-input-code, y-input-code removed for compatibility with recent ZMK main if needed. 
-        // If build fails, we might need them or different aproach. 
-        // Assuming trackball provides standard REL_X/Y.
-        input-processors = <&zip_xy_scaler 1 1 &zip_xy_to_scroll_mapper>;
+        layers = <0 2 4 5 6>; 
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
+        bindings = <&mo 1>;
+        time-to-live-ms = <200>; // 0.2s delay
     };
 
     // 4. トラックボール作動時にレイヤー1にする (Auto Mouse)
