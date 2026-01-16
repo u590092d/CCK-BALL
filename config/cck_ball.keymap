@@ -31,14 +31,11 @@
       map = <INPUT_REL_X INPUT_REL_Y>, <INPUT_REL_Y INPUT_REL_X>;
   };
 
- zip_negate_y: zip_negate_y {
-      compatible = "zmk,input-processor-transform";
-      #input-processor-cells = <0>;
+zip_y_inverter: zip_y_inverter {
+      compatible = "zmk,input-processor-scaler";
+      #input-processor-cells = <2>; /* 引数を2つ(倍率, 分母)とる設定 */
       type = <INPUT_EV_REL>;
-      /* 記述形式: <対象コード  倍率  分母> */
-      /* INPUT_REL_X は 1/1倍 (そのまま) */
-      /* INPUT_REL_Y は -1/1倍 (反転) */
-      transform = <INPUT_REL_X 1 1>, <INPUT_REL_Y (-1) 1>;
+      codes = <INPUT_REL_Y>; /* Y軸のみに作用させる */
   };
 };
 
@@ -46,7 +43,7 @@
 &mmv_input_listener {
     compatible = "zmk,input-listener";
     device = <&trackball>;
-    input-processors = <&zip_xy_swap>, <&zip_negate_y>, <&zip_xy_scaler 2 1>, <&zip_temp_layer 1 200>;
+    input-processors = <&zip_xy_swap>, <&zip_y_inverter (-1) 1>, <&zip_xy_scaler 2 1>, <&zip_temp_layer 1 200>;
 };
 
 // 2. 通常のスクロール (既存設定)
