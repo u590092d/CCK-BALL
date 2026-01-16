@@ -38,7 +38,7 @@
       /* 記述形式: <対象コード  倍率  分母> */
       /* INPUT_REL_X は 1/1倍 (そのまま) */
       /* INPUT_REL_Y は -1/1倍 (反転) */
-      transform = <INPUT_REL_X 1 1>, <INPUT_REL_Y -1 1>;
+      transform = <INPUT_REL_X 1 1>, <INPUT_REL_Y (-1) 1>;
   };
 };
 
