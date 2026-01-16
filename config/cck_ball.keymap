@@ -25,7 +25,7 @@
 // 1. 通常のマウス移動 (レイヤー3以外で有効)
 &mmv_input_listener {
     input-processors = <&zip_xy_scaler 2 1>;
-    // layers = <0 1 2 4 5 6>; 
+    layers = <0 1 2 4 5 6>; 
 };
 
 // 2. 通常のスクロール (既存設定)
@@ -39,18 +39,15 @@
     // -----------------------------------------------------
 
     // 3. レイヤー3専用: トラックボールをスクロールにする
-    /* 
     scroll_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
         layers = <3>;
-        evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_X>;
-        y-input-code = <INPUT_REL_Y>;
-        // 修正: 複数のプロセッサを1つの <> 内に記述 (安全策)
+        // evt-type, x-input-code, y-input-code removed for compatibility with recent ZMK main if needed. 
+        // If build fails, we might need them or different aproach. 
+        // Assuming trackball provides standard REL_X/Y.
         input-processors = <&zip_xy_scaler 1 1 &zip_xy_to_scroll_mapper>;
     };
-    */
 
     // 4. トラックボール作動時にレイヤー1にする (Auto Mouse)
     automouse_listener {
@@ -128,7 +125,7 @@
 &trans   &trans          &trans        &trans        &trans        &trans         &kp PG_UP     &kp HOME    &kp UP      &kp END    &trans   &bt BT_CLR
 &trans   &none           &bt BT_CLR        &kp CAPSLOCK  &kp F7        &kp F8         &kp PG_DN     &kp LEFT    &kp DOWN    &kp RIGHT  &trans   &trans
 &trans   &trans          &trans        &trans        &trans        &none          &none         &none       &trans      &trans     &none    &trans
-&trans   &trans          &trans        &trans        &trans        &mkp LCLK      &mkp RCLK     &trans      &trans      &trans     &trans   &trans
+&trans   &trans          &trans        &trans        &mkp LCLK      &mkp RCLK     &trans        &trans      &trans      &trans     &trans   &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
