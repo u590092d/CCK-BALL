@@ -72,3 +72,10 @@
 &left_encoder {
 	status = "okay";
 };
+
+/ {
+    trackball: trackball {
+        status = "disabled";
+        compatible = "xiao-ble-common";
+    };
+};
