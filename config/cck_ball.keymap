@@ -7,7 +7,7 @@
 // ---------------------------------------------------------
 // 感度とスクロール量の基本設定
 // ---------------------------------------------------------
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 300
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 100
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 6
 
 #include <behaviors.dtsi>
@@ -68,7 +68,7 @@ zip_y_inverter: zip_y_inverter {
         x-input-code = <INPUT_REL_X>;
         y-input-code = <INPUT_REL_Y>;
         bindings = <&mo 1>;
-        time-to-live-ms = <200>; // 0.2s delay
+        time-to-live-ms = <100>; // 0.1s delay
     };
 
 
