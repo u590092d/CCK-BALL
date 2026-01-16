@@ -7,7 +7,7 @@
 // ---------------------------------------------------------
 // 感度とスクロール量の基本設定
 // ---------------------------------------------------------
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1000 
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 300
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 6
 
 #include <behaviors.dtsi>
