@@ -162,7 +162,7 @@ zip_y_inverter: zip_y_inverter {
 &trans   &trans          &trans        &trans        &trans        &trans         &kp PG_UP     &kp HOME    &kp UP      &kp END    &trans   &trans
 &trans   &none           &none         &trans        &trans        &trans         &kp PG_DN     &kp LEFT    &kp DOWN    &kp RIGHT  &trans   &trans
 &trans   &trans          &trans        &trans        &trans        &none          &none         &none       &trans      &trans     &none    &trans
-&trans   &trans          &trans        &trans        &mkp LCLK     &mkp RCLK    　&trans 　　　　 &trans      &trans      &trans     &trans   &trans
+&trans   &trans          &trans        &trans        &mkp LCLK     &mkp RCLK     &trans        &trans      &trans      &trans     &trans   &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
