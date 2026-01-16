@@ -31,14 +31,14 @@
       map = <INPUT_REL_X INPUT_REL_Y>, <INPUT_REL_Y INPUT_REL_X>;
   };
 
-  zip_negate_y: zip_negate_y {
+ zip_negate_y: zip_negate_y {
       compatible = "zmk,input-processor-transform";
       #input-processor-cells = <0>;
       type = <INPUT_EV_REL>;
-      x-codes = <INPUT_REL_X>;
-      y-codes = <INPUT_REL_Y>;
-      /* Xはそのまま(1倍)、Yは反転(-1倍)させる設定 */
-      transform = <INPUT_REL_X (input, 1, 1)>, <INPUT_REL_Y (input, 1, -1)>;
+      /* 記述形式: <対象コード  倍率  分母> */
+      /* INPUT_REL_X は 1/1倍 (そのまま) */
+      /* INPUT_REL_Y は -1/1倍 (反転) */
+      transform = <INPUT_REL_X 1 1>, <INPUT_REL_Y -1 1>;
   };
 };
 
