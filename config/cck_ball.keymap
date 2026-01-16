@@ -52,17 +52,7 @@
         time-to-live-ms = <200>; // 0.2s delay
     };
 
-    // 4. トラックボール作動時にレイヤー1にする (Auto Mouse)
-    automouse_listener {
-        compatible = "zmk,input-behavior-listener";
-        device = <&trackball>;
-        layers = <0 2 4 5 6>; 
-        evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_X>;
-        y-input-code = <INPUT_REL_Y>;
-        bindings = <&mo 1>;
-        time-to-live-ms = <200>; // 0.2s delay
-    };
+
 };
 
 // ---------------------------------------------------------
