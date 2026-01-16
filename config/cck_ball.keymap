@@ -46,11 +46,11 @@
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_X>;
         y-input-code = <INPUT_REL_Y>;
-        input-processors = <&zip_xy_scaler 1 1>, <&zip_xy_to_scroll_mapper>;
+        // 修正: 複数のプロセッサを1つの <> 内に記述 (安全策)
+        input-processors = <&zip_xy_scaler 1 1 &zip_xy_to_scroll_mapper>;
     };
 
     // 4. トラックボール作動時にレイヤー1にする (Auto Mouse)
-    // レイヤー3 (スクロール) が優先されるよう、L3を除外しています
     automouse_listener {
         compatible = "zmk,input-behavior-listener";
         device = <&trackball>;
@@ -131,11 +131,12 @@
         };
 
         // Layer 2: Bluetooth
+        // 修正: BT_CLR_ALL を BT_CLR に変更
         BT_layers {
             bindings = <
 &trans  &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans         &trans        &trans      &trans  &trans  &trans
 &trans  &kp N1          &kp N2        &kp N3        &kp N4        &kp N5          &kp N6         &kp N7        &kp N8      &kp N9  &kp N0  &trans
-&trans  &bt BT_CLR_ALL  &kp MINUS     &kp LBRC      &kp LBRC      &trans          &trans         &kp LPAR      &kp RPAR    &trans  &trans  &trans
+&trans  &bt BT_CLR      &kp MINUS     &kp LBRC      &kp LBRC      &trans          &trans         &kp LPAR      &kp RPAR    &trans  &trans  &trans
 &trans  &kp UNDER       &kp PLUS      &kp LBKT      &kp RBKT      &trans          &bt BT_NXT     &kp LT        &kp GT      &trans  &trans  &trans
 &trans  &kp EQUAL       &trans        &trans        &trans        &trans          &trans         &trans        &trans      &trans  &trans  &trans
             >;
@@ -143,7 +144,6 @@
         };
 
         // Layer 3: Scroll Layer (with Nav/Click keys)
-        // ここに Layer 1 と同じキー配置を反映させました
         scroll-layers {
             bindings = <
 &trans   &trans          &trans        &trans        &trans        &trans         &trans        &trans      &trans      &trans     &trans   &trans
@@ -164,7 +164,8 @@
 &trans  &trans    &trans  &trans    &trans    &trans     &trans      &kp PRCNT   &kp AMPS   &trans    &trans    &trans
 &trans  &trans    &trans  &trans    &trans    &trans     &trans      &trans      &trans     &trans    &trans    &trans
             >;
-            sensor-bindings = <&scroll_vertical_encoder>, <&scroll_horizontal_encoder>;
+            // 修正: カンマ区切りではなくスペース区切りにして <> で括る (標準的なZMK構文)
+            sensor-bindings = <&scroll_vertical_encoder &scroll_horizontal_encoder>;
         };
 
         // Layer 5: Function Keys
@@ -176,7 +177,7 @@
 &trans  &trans    &trans  &trans    &trans    &trans     &trans      &kp PRCNT   &kp AMPS   &trans    &trans    &trans
 &trans  &trans    &trans  &trans    &trans    &trans     &trans      &trans      &trans     &trans    &trans    &trans
             >;
-            sensor-bindings = <&scroll_vertical_encoder>, <&scroll_horizontal_encoder>;
+            sensor-bindings = <&scroll_vertical_encoder &scroll_horizontal_encoder>;
         };
 
         // Layer 6: New Layer
