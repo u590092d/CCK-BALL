@@ -30,13 +30,23 @@
       /* INPUT_REL_X を INPUT_REL_Y に、Y を X に変換する */
       map = <INPUT_REL_X INPUT_REL_Y>, <INPUT_REL_Y INPUT_REL_X>;
   };
+
+  zip_negate_y: zip_negate_y {
+      compatible = "zmk,input-processor-transform";
+      #input-processor-cells = <0>;
+      type = <INPUT_EV_REL>;
+      x-codes = <INPUT_REL_X>;
+      y-codes = <INPUT_REL_Y>;
+      /* Xはそのまま(1倍)、Yは反転(-1倍)させる設定 */
+      transform = <INPUT_REL_X (input, 1, 1)>, <INPUT_REL_Y (input, 1, -1)>;
+  };
 };
 
 // 1. 通常のマウス移動 (v0.3対応: 標準リスナーに戻す)
 &mmv_input_listener {
     compatible = "zmk,input-listener";
     device = <&trackball>;
-    input-processors = <&zip_xy_swap>, <&zip_xy_scaler 2 1>, <&zip_temp_layer 1 200>;
+    input-processors = <&zip_xy_swap>, <&zip_negate_y>, <&zip_xy_scaler 2 1>, <&zip_temp_layer 1 200>;
 };
 
 // 2. 通常のスクロール (既存設定)
