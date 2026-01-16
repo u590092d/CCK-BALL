@@ -23,13 +23,12 @@
 // ---------------------------------------------------------
 
 / {
-  /* X軸とY軸を入れ替えるためのカスタムプロセッサ定義 */
   zip_xy_swap: zip_xy_swap {
-      compatible = "zmk,input-processor-transform";
+      compatible = "zmk,input-processor-code-mapper";
       #input-processor-cells = <0>;
       type = <INPUT_EV_REL>;
-      x-codes = <INPUT_REL_Y>; // X軸の出力元をY軸入力にする
-      y-codes = <INPUT_REL_X>; // Y軸の出力元をX軸入力にする
+      /* INPUT_REL_X を INPUT_REL_Y に、Y を X に変換する */
+      map = <INPUT_REL_X INPUT_REL_Y>, <INPUT_REL_Y INPUT_REL_X>;
   };
 };
 
