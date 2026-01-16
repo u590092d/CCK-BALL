@@ -25,7 +25,7 @@
 // 1. 通常のマウス移動 (レイヤー3以外で有効)
 &mmv_input_listener {
     input-processors = <&zip_xy_scaler 2 1>;
-    layers = <0 1 2 4 5 6>; 
+    // layers = <0 1 2 4 5 6>; 
 };
 
 // 2. 通常のスクロール (既存設定)
@@ -39,6 +39,7 @@
     // -----------------------------------------------------
 
     // 3. レイヤー3専用: トラックボールをスクロールにする
+    /* 
     scroll_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
@@ -49,6 +50,7 @@
         // 修正: 複数のプロセッサを1つの <> 内に記述 (安全策)
         input-processors = <&zip_xy_scaler 1 1 &zip_xy_to_scroll_mapper>;
     };
+    */
 
     // 4. トラックボール作動時にレイヤー1にする (Auto Mouse)
     automouse_listener {
