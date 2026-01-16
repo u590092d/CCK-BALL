@@ -123,7 +123,7 @@
             bindings = <
 &trans   &trans          &trans        &trans        &trans        &trans         &trans        &trans      &trans      &trans     &trans   &trans
 &trans   &trans          &trans        &trans        &trans        &trans         &kp PG_UP     &kp HOME    &kp UP      &kp END    &trans   &bt BT_CLR
-&trans   &none           &none         &CAPSLOCK     &kp F7        &kp F8         &kp PG_DN     &kp LEFT    &kp DOWN    &kp RIGHT  &trans   &trans
+&trans   &none           &none         &kp CAPSLOCK  &kp F7        &kp F8         &kp PG_DN     &kp LEFT    &kp DOWN    &kp RIGHT  &trans   &trans
 &trans   &trans          &trans        &trans        &trans        &none          &none         &none       &trans      &trans     &none    &trans
 &trans   &trans          &trans        &trans        &trans        &mkp LCLK      &mkp RCLK     &trans      &trans      &trans     &trans   &trans
             >;
