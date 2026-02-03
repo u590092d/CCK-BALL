@@ -192,14 +192,23 @@ zip_y_inverter: zip_y_inverter {
             sensor-bindings = <&scroll_vertical_encoder &scroll_horizontal_encoder>;
         };
 
-        // Layer 6: New Layer
+        // Layer 6: Application & Window Control
         layer_6 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+// ┌──────────┬──────────────┬─────────────┬──────────────┬──────────────┬──────┬──────────────┬──────────────────┬──────────────┬──────────────────┬───────────┬──────────┐
+   &trans      &trans         &trans        &trans         &trans         &trans &trans         &trans             &trans         &trans             &trans      &trans
+// ├──────────┼──────────────┼─────────────┼──────────────┼──────────────┼──────┼──────────────┼──────────────────┼──────────────┼──────────────────┼───────────┼──────────┤
+   &trans      &none          &kp C_VOL_DN  &kp C_MUTE     &kp C_VOL_UP   &none  &kp LC(LG(T))  &kp LG(LEFT)       &kp LG(UP)     &kp LG(RIGHT)      &none       &trans
+// │          │              │ Volume Down │ Mute         │ Volume Up    │      │ New Desktop  │ Win + Left       │ Win + Up     │ Win + Right      │           │          │
+// ├──────────┼──────────────┼─────────────┼──────────────┼──────────────┼──────┼──────────────┼──────────────────┼──────────────┼──────────────────┼───────────┼──────────┤
+   &trans      &kp LC(LS(ESC)) &kp LS(TAB)  &kp LALT       &kp TAB        &none  &none          &kp LC(LG(LEFT))   &kp LG(DOWN)   &kp LC(LG(RIGHT))  &kp PSCRN   &trans
+// │          │ Task Manager │ Shift+Tab   │ Alt          │ Tab          │      │              │ Desktop Left     │ Win + Down   │ Desktop Right    │ PrtScr    │          │
+// ├──────────┼──────────────┼─────────────┼──────────────┼──────────────┼──────┼──────────────┼──────────────────┼──────────────┼──────────────────┼───────────┼──────────┤
+   &trans      &none          &trans        &kp LA(SPACE)  &none          &none  &none          &none              &kp LG(TAB)    &none              &none       &trans
+// │          │              │             │ Alt+Space    │              │      │              │                  │ Win + Tab    │                  │           │          │
+// ├──────────┼──────────────┼─────────────┼──────────────┼──────────────┼──────┼──────────────┼──────────────────┼──────────────┼──────────────────┼───────────┼──────────┤
+   &trans      &trans         &trans        &trans         &trans         &trans &trans         &trans             &trans         &trans             &trans      &trans
+// └──────────┴──────────────┴─────────────┴──────────────┴──────────────┴──────┴──────────────┴──────────────────┴──────────────┴──────────────────┴───────────┴──────────┘
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
